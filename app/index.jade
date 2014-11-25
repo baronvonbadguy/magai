@@ -2,28 +2,39 @@ doctype html
 html(class="no-js", lang="en")
     include header
     body
-        div.row
-            div(class="small-12 small-centered medium-10 medium-centered large-8 large-centered columns panel radius")
-                h1 Yo Foundation 5!
-                ul
-                    li Sass compiling (Ruby or Node/Libsass)
-                    li Jade templating engine (option)
-                    li Publishing to dist directory
-                    li Server with LiveReload
-                    li JSHint
-                    li Grunt Bower install
-                    li Imagemin
-                    li Font Awesome (option)
-                h1 Grunt tasks:
-                ul
-                    li 'grunt' - watching (Sass, Server on 127.0.0.1:9000 with LiveReload)
-                    li 'grunt compile-sass' - Sass
-                    li 'grunt compile-jade' - Jade
-                    li 'grunt validate-js' - JSHint
-                    li 'grunt bower-install' - injecting bower libraries
-                    li 'grunt publish' - dist directory
-                    li 'grunt server-dist' - server on 127.0.0.1:9001 - dist directory (preview only)
-                h2(class="text-right")
-                    a(href="https://github.com/juliancwirko/generator-zf5")
-                        span github
+        .row.full-width#splash
+            .small-12.columns
+                .row
+                    #splash-logo
+                .row.flex-center
+                    a(href="#") ABOUT US
+                    a(href="#") TREE CARE
+                    a(href="#") CONSULTING
+        .row.full-width#about-us
+            .small-12.medium-7.columns.right
+                .small-11.small-centered.columns
+                    .row
+                        h1 ABOUT US
+                        hr
+                    .row
+                        p.accent.
+                            Serving the needs of unabashed tree lovers,
+                            their neighbors & governments by providing
+                            a preventative, holistic approach to 
+                            tree care. 
+                    .row
+                        p.
+                            We specialize in assessing the structural integrity of large,
+                            old trees, and have extensive experience designing and
+                            installing dynamic cabling systems. The majority of our 
+                            customers are homeowners, but we occasionally preform 
+                            formal risk assessments, oversee tree-sensitive construction
+                            sites and deliver expert opinions for municipalities,
+                            businesses and educational institutions. 
+                            In large tree care companies, a complicated chain of 
+                            comman often results in mistakes and cookie-cutter
+                            solutions. Becuase we are a very small company of
+                            articulate and educated employees, we are able to 
+                            safeguard the trees we work on while providing
+                            <b><i>intelligent</b></i> solutions to <i><b>unique</i></b> problems
         include footer

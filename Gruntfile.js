@@ -13,17 +13,16 @@ module.exports = function(grunt) {
 		sass: {
 			dist: {
 				options: {
-					style: 'expanded', // expanded or nested or compact or compressed
-					loadPath: '<%= app %>/bower_components/foundation/scss',
-					compass: true,
-					quiet: true
+					outputStyle: 'nested', // expanded or nested or compact or compressed
+					includePaths: ['<%= app %>/bower_components/foundation/scss'],
+					imagePath: '/images'
 				},
 				files: {
-					'<%= app %>/css/app.css': '<%= app %>/scss/app.scss'
+					'<%= app %>/css/app--no-prefix.css': '<%= app %>/scss/app.scss'
 				}
 			}
 		},
- 
+
 		
 		jade: {
 			compile: {
@@ -63,14 +62,18 @@ module.exports = function(grunt) {
 				files: [{
 					expand: true,
 					cwd:'<%= app %>/',
-					src: ['fonts/**', '**/*.html', '!**/*.scss', '!bower_components/**'],
+					src: ['fonts/**', '**/*.html', '!**/*.scss', '!bower_components/**', 'php/**'],
 					dest: '<%= dist %>/'
 				}]
 			},
 		},
 
 		imagemin: {
-			target: {
+			dynamic: {
+				options: {
+					optimizationLevel: 7,
+					progressive: true
+				},
 				files: [{
 					expand: true,
 					cwd: '<%= app %>/images/',
@@ -80,12 +83,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		uglify: {
-			options: {
-				preserveComments: 'some',
-				mangle: false
-			}
-		},
 
 		useminPrepare: {
 			html: ['<%= app %>/index.html'],
@@ -94,11 +91,19 @@ module.exports = function(grunt) {
 			}
 		},
 
+		uglify: {
+			options: {
+				preserveComments: 'some',
+				mangle: false
+			},
+			dist: {}
+		},
+
 		usemin: {
 			html: ['<%= dist %>/**/*.html', '!<%= app %>/bower_components/**'],
 			css: ['<%= dist %>/css/**/*.css'],
 			options: {
-				dirs: ['<%= dist %>']
+				assetsDirs: ['<%= dist %>', '<%= dist %>/images']
 			}
 		},
 
@@ -115,6 +120,10 @@ module.exports = function(grunt) {
 				files: '<%= app %>/**/*.jade',
 				tasks: ['jade']
 			},
+			autoprefixer: {
+				files: '<%= app%>/css/app--no-prefix.css',
+				tasks: ['autoprefixer']
+			},
 			livereload: {
 				files: ['<%= app %>/**/*.html', '!<%= app %>/bower_components/**', '<%= app %>/js/**/*.js', '<%= app %>/css/**/*.css', '<%= app %>/images/**/*.{jpg,gif,svg,jpeg,png}'],
 				options: {
@@ -130,7 +139,7 @@ module.exports = function(grunt) {
 					base: '<%= app %>/',
 					open: true,
 					livereload: true,
-					hostname: '127.0.0.1'
+					hostname: '0.0.0.0'
 				}
 			},
 			dist: {
@@ -152,11 +161,42 @@ module.exports = function(grunt) {
 				],
 				exclude: [
 					'modernizr',
+					'font-awesome',
 					'jquery-placeholder',
 					'jquery.cookie',
 					'foundation'
 				]
 			}
+		},
+
+		autoprefixer: {
+        	single_file: {
+        		src: '<%= app %>/css/app--no-prefix.css',
+        		dest: '<%= app %>/css/app.css'
+        	},
+    		options: {
+  				browsers: ['last 2 version', '> 5%', 'ie 9', 'chrome 20']
+			}
+        },
+
+        // Filerev
+		filerev: {
+		    options: {
+		        encoding: 'utf8',
+		        algorithm: 'md5',
+		        length: 8
+		    },
+		    release: {
+		        // filerev:release hashes(md5) all assets (images, js and css )
+		        // in dist directory
+		        files: [{
+		            src: [
+		                '<%= dist %>/images/*.{png,gif,jpg,svg}',
+		                '<%= dist %>/js/*.js',
+		                '<%= dist %>/css/*.css',
+		            ]
+		        }]
+		    }
 		}
 
 	});
@@ -165,10 +205,12 @@ module.exports = function(grunt) {
 	grunt.registerTask('compile-sass', ['sass']);
 	grunt.registerTask('bower-install', ['wiredep']);
 	
-	grunt.registerTask('default', ['compile-jade', 'compile-sass', 'bower-install', 'connect:app', 'watch']);
+	grunt.registerTask('default', ['compile-jade', 'compile-sass', 'connect:app', 'watch']);
 	grunt.registerTask('validate-js', ['jshint']);
 	grunt.registerTask('server-dist', ['connect:dist']);
 	
-	grunt.registerTask('publish', ['compile-jade', 'compile-sass', 'clean:dist', 'validate-js', 'useminPrepare', 'copy:dist', 'newer:imagemin', 'concat', 'cssmin', 'uglify', 'usemin']);
-
+	grunt.registerTask('publish', ['compile-jade', 'compile-sass', 'clean:dist', 'validate-js', 'useminPrepare', 'copy:dist', 'newer:imagemin', 'concat', 'cssmin', 'uglify', 'filerev', 'usemin']);
+	grunt.loadNpmTasks('grunt-autoprefixer');
+	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks('grunt-filerev');
 };
