@@ -6297,7 +6297,7 @@ th.hide-for-touch {
 @font-face {
   font-family: Brandon;
   font-weight: normal;
-  src: url("/fonts/Brandon_light.otf"); }
+  src: url("/fonts/Brandon_reg.otf"); }
 
 body {
   font-size: 62.5%; }
@@ -6309,21 +6309,26 @@ p {
   font-size: 2.25em;
   font-family: Brandon;
   font-weight: normal;
-  letter-spacing: 0.01em; }
+  letter-spacing: 0.1em; }
 
 h1 {
   font-size: 7em;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.15em;
   font-family: Brandon;
   font-weight: bolder; }
 
+.no-pad {
+  padding-left: 0em;
+  padding-right: 0em; }
+
 .accent {
-  letter-spacing: 0.01em;
+  line-height: 1.25em;
+  letter-spacing: 0.1em;
   font-family: Brandon;
   font-weight: 200;
   font-style: italic;
   color: #222222;
-  font-size: 2.7em; }
+  font-size: 2.3em; }
 
 .row.full-width {
   width: 100%;
@@ -6361,3 +6366,5 @@ h1 {
   background-image: url("/images/about-us-tree.png"); }
   #about-us h1 {
     margin-top: 1em; }
+  #about-us #about-us--info {
+    margin-left: 5em; }
