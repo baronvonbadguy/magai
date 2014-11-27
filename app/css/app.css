@@ -6279,19 +6279,24 @@ p {
   font-size: 2.25em;
   font-family: Brandon;
   font-weight: normal;
-  letter-spacing: 0.1em; }
+  letter-spacing: 0.05em;
+  line-height: 1em; }
 
 h1 {
   font-size: 7em;
   letter-spacing: 0.15em;
   font-family: Brandon;
   font-weight: bolder; }
+  h1.medium {
+    font-size: 4.8em;
+    margin: 2em auto; }
 
 .no-pad {
   padding-left: 0em;
   padding-right: 0em; }
 
 .accent {
+  margin-top: 1em;
   line-height: 1.25em;
   letter-spacing: 0.1em;
   font-family: Brandon;
@@ -6333,8 +6338,8 @@ h1 {
     color: white; }
 
 #splash-logo {
-  width: 375px;
-  height: 375px;
+  width: 37.5em;
+  height: 37.5em;
   margin: 0 auto;
   margin-top: 10%;
   background: url("/images/logo.svg");
@@ -6349,3 +6354,51 @@ h1 {
     margin-top: 1em; }
   #about-us #about-us--info {
     margin-left: 5em; }
+
+#meet-the-crew {
+  height: 90em;
+  background: url("/images/meet-the-crew.png");
+  background-repeat: no-repeat;
+  background-size: cover; }
+  #meet-the-crew ul {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 5em auto 2em auto; }
+    #meet-the-crew ul li {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      font-family: Brandon;
+      letter-spacing: 0.1em;
+      text-align: center; }
+      #meet-the-crew ul li .name {
+        font-size: 1.55em;
+        font-weight: bold; }
+      #meet-the-crew ul li .title {
+        font-size: 1.05em;
+        font-weight: normal;
+        font-style: italic; }
+      #meet-the-crew ul li .circle {
+        display: block;
+        width: 7.5em;
+        height: 7.5em;
+        border-radius: 50%;
+        border: 0.175em solid black;
+        margin-bottom: 2em; }
+      #meet-the-crew ul li:nth-child(1) .circle {
+        border: 0.25em solid black; }
+      #meet-the-crew ul li:nth-child(1) .box {
+        border: 0.13em solid black;
+        padding: 0 1.5em; }

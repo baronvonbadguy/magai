@@ -18,19 +18,25 @@ p {
   font-size: $font-size--body;
   font-family: Brandon;
   font-weight: normal;
-  letter-spacing: .1em;
+  letter-spacing: .05em;
+  line-height: 1em;
 }
 h1 {
   font-size: $font-size--header--large;
   letter-spacing: .15em;
   font-family: Brandon;
   font-weight: bolder;
+  &.medium {
+    font-size: $font-size--header--medium;
+    margin: 2em auto;
+  }
 }
 .no-pad {
   padding-left: 0em;
   padding-right: 0em;
 }
 .accent {
+  margin-top: 1em;
   line-height: 1.25em;
   letter-spacing: .1em;
   font-family: Brandon;
@@ -63,8 +69,8 @@ h1 {
   }
 }
 #splash-logo {
-  width: 375px;
-  height: 375px;
+  width: 37.5em;
+  height: 37.5em;
   margin: 0 auto;
   margin-top: 10%;
   background: image-url("logo.svg");
@@ -79,6 +85,51 @@ h1 {
     margin-top: 1em;
   }
   #about-us--info {
-  margin-left: 5em;
+    margin-left: 5em;
+  }
+}
+#meet-the-crew {
+  height: 90em;
+  background: image-url("meet-the-crew.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  & ul {
+    display: flex;
+    margin: 5em auto 2em auto;
+    & li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Brandon;
+      letter-spacing: .1em;
+      text-align: center;
+      & .name {
+        font-size: ($font-size--accent - .75em);
+        font-weight: bold;
+      }
+      & .title {
+        font-size: ($font-size--accent - 1.25em);
+        font-weight: normal;
+        font-style: italic;
+      }
+      & .circle {
+        display: block;
+        width: 7.5em;
+        height: 7.5em;
+        border-radius: 50%;
+        border: .175em solid black;
+        margin-bottom: 2em;
+      }
+      &:nth-child(1) {
+        & .circle {
+          border: .25em solid black;
+        }
+        & .box {
+          border: .13em solid black;
+          padding: 0 1.5em;
+        }
+      }
+    }
   }
 }
